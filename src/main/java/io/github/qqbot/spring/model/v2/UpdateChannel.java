@@ -1,0 +1,36 @@
+package io.github.qqbot.spring.model.v2;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+/** 修改子频道: PATCH /channels/{channel_id}. */
+public final class UpdateChannel {
+    private UpdateChannel() { }
+
+    public record Request(String channelId, Body body) { }
+
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    public record Body(
+            @JsonProperty("name") String name,
+            @JsonProperty("position") Integer position,
+            @JsonProperty("parent_id") String parentId,
+            @JsonProperty("private_type") Integer privateType,
+            @JsonProperty("speak_permission") Integer speakPermission) { }
+
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    public record Response(
+            @JsonProperty("id") String id,
+            @JsonProperty("guild_id") String guildId,
+            @JsonProperty("name") String name,
+            @JsonProperty("type") Integer type,
+            @JsonProperty("sub_type") Integer subType,
+            @JsonProperty("position") Integer position,
+            @JsonProperty("parent_id") String parentId,
+            @JsonProperty("owner_id") String ownerId,
+            @JsonProperty("private_type") Integer privateType,
+            @JsonProperty("speak_permission") Integer speakPermission,
+            @JsonProperty("application_id") String applicationId,
+            @JsonProperty("permissions") String permissions) { }
+}
