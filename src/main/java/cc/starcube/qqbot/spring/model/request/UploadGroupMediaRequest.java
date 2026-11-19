@@ -1,0 +1,4 @@
+package cc.starcube.qqbot.spring.model.request;
+import com.fasterxml.jackson.annotation.JsonProperty;
+public record UploadGroupMediaRequest(@JsonProperty("file_type") Integer fileType, String url,
+    @JsonProperty("srv_send_msg") Boolean serverSendMessage) { }

@@ -28,7 +28,7 @@ mvn install
 
 ```xml
 <dependency>
-  <groupId>io.github.qqbot</groupId>
+  <groupId>cc.starcube.qqbot</groupId>
   <artifactId>qqbot-spring-boot-starter</artifactId>
   <version>0.1.0-SNAPSHOT</version>
 </dependency>
@@ -117,8 +117,8 @@ GetUserInfo.Response user = qqBot.v2().getUserInfo(
 - `CreateCommandPanel.Request`、`CreateCommandPanel.RequestPanel`、`CreateCommandPanel.Response`
 - `PrepareGroupUpload.Request`、`PrepareGroupUpload.Body`、`PrepareGroupUpload.Response`
 
-模型位于 `io.github.qqbot.spring.model.v2`，统一门面位于
-`io.github.qqbot.spring.api.QQBotV2Api`。
+模型位于 `cc.starcube.qqbot.spring.model.v2`，统一门面位于
+`cc.starcube.qqbot.spring.api.QQBotV2Api`。
 
 ## WebSocket 事件
 
