@@ -2,17 +2,32 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>cc.starcube.qqbot</groupId>
+    <groupId>io.github.leojian622</groupId>
     <artifactId>qqbot-spring-boot-starter</artifactId>
-    <version>0.1.1</version>
+    <version>0.1.2</version>
     <name>QQ Bot Spring Boot Starter</name>
     <description>Java SDK starter for the QQ Bot Open Platform</description>
     <url>https://github.com/LeoJian622/qqbot-spring-boot-starter</url>
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+    <developers>
+        <developer>
+            <id>LeoJian622</id>
+            <name>李永键</name>
+            <email>hualuoyu_yks@qq.com</email>
+            <url>https://github.com/LeoJian622</url>
+        </developer>
+    </developers>
     <scm>
         <connection>scm:git:https://github.com/LeoJian622/qqbot-spring-boot-starter.git</connection>
         <developerConnection>scm:git:git@github.com:LeoJian622/qqbot-spring-boot-starter.git</developerConnection>
         <url>https://github.com/LeoJian622/qqbot-spring-boot-starter</url>
-        <tag>v0.1.1</tag>
+        <tag>v0.1.2</tag>
     </scm>
     <distributionManagement>
         <repository>
@@ -26,6 +41,7 @@
         <spring-boot.version>3.3.5</spring-boot.version>
         <maven.compiler.release>${java.version}</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <gpg.keyname>CB485E0B966947142A718E6FC43C60C3621BCFE8</gpg.keyname>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -103,4 +119,46 @@
             </plugin>
         </plugins>
     </build>
+    <profiles>
+        <profile>
+            <id>central-release</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>3.2.8</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <keyname>${gpg.keyname}</keyname>
+                            <passphrase>${env.MAVEN_GPG_PASSPHRASE}</passphrase>
+                            <gpgArguments>
+                                <arg>--pinentry-mode</arg>
+                                <arg>loopback</arg>
+                            </gpgArguments>
+                        </configuration>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.sonatype.central</groupId>
+                        <artifactId>central-publishing-maven-plugin</artifactId>
+                        <version>0.12.0</version>
+                        <extensions>true</extensions>
+                        <configuration>
+                            <publishingServerId>central</publishingServerId>
+                            <autoPublish>true</autoPublish>
+                            <waitUntil>published</waitUntil>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>
