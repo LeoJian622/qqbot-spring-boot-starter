@@ -18,21 +18,28 @@
 
 ## 安装
 
-在 SDK 项目目录执行：
+正式版发布在 GitHub Packages。先在 Maven `settings.xml` 中配置可读取 GitHub Packages
+的凭据，再添加仓库：
 
-```shell
-mvn install
+```xml
+<repository>
+  <id>github</id>
+  <url>https://maven.pkg.github.com/LeoJian622/qqbot-spring-boot-starter</url>
+</repository>
 ```
 
-然后在 Spring Boot 项目中添加：
+然后在 Spring Boot 项目中添加依赖：
 
 ```xml
 <dependency>
   <groupId>cc.starcube.qqbot</groupId>
   <artifactId>qqbot-spring-boot-starter</artifactId>
-  <version>0.1.0-SNAPSHOT</version>
+  <version>0.1.1</version>
 </dependency>
 ```
+
+也可以从 GitHub Release 下载主包、源码包和 Javadoc 包。本地开发源码时仍可执行
+`mvn install` 安装到本机 Maven 仓库。
 
 ## 配置
 
